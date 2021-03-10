@@ -1,7 +1,10 @@
 package no.uia.ikt205.mybooks
 
+import android.app.Activity
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Editable
+import android.view.inputmethod.InputMethodManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import no.uia.ikt205.mybooks.books.data.Book
 import no.uia.ikt205.mybooks.books.BookCollectionAdapter
@@ -24,16 +27,36 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.bookListing.layoutManager = LinearLayoutManager(this)
-
         binding.bookListing.adapter = BookCollectionAdapter(bookColection, this::onBookClicked)
 
         binding.saveBt.setOnClickListener {
-            // Dette er fort og galt. Vis mer ansvar selv ;)
-            // Det er en bug som må fikses her.
-            bookColection.add(Book(binding.author.text.toString(), binding.title.text.toString(), binding.published.text.toString().toInt()))
-            (binding.bookListing.adapter as BookCollectionAdapter).updateCollection(bookColection)
+
+            // Fortsatt ikke bra, men bedre :)
+
+            val author = binding.author.text.toString()
+            val title = binding.title.text.toString()
+            val published =  binding.published.text.toString().toInt()
+
+            binding.author.setText("")
+            binding.title.setText("")
+            binding.published.setText("")
+
+            addBook(title,author,published)
+
+            val ipm = getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+            ipm.hideSoftInputFromWindow(currentFocus?.windowToken, 0)
+
         }
     }
+
+    private fun addBook(title:String, author:String, published:Int){
+
+        val book = Book(title,author,published)
+        bookColection.add(book)
+
+    }
+
+
 
     private fun onBookClicked(book: Book):Unit{
         // Vis detalje side for bok.
