@@ -29,7 +29,7 @@ class BookDetailsActivity : AppCompatActivity() {
         } else{
 
             setResult(RESULT_CANCELED, Intent(EXTRA_BOOK_INFO).apply {
-                // leg til info vi vil sende tilbake til Main
+                // legg til info vi vil sende tilbake til Main
             })
 
             finish()
