@@ -11,6 +11,9 @@ import no.uia.ikt205.mybooks.books.BookCollectionAdapter
 import no.uia.ikt205.mybooks.books.BookDepositoryManager
 import no.uia.ikt205.mybooks.books.BookDetailsActivity
 import no.uia.ikt205.mybooks.databinding.ActivityMainBinding
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
+import java.time.format.FormatStyle
 
 
 const val EXTRA_BOOK_INFO: String = "no.uia.ikt205.mybooks.book.info"
@@ -48,15 +51,17 @@ class MainActivity : AppCompatActivity() {
 
         binding.saveBt.setOnClickListener {
 
-            val author = binding.author.text.toString()
+            val author = ""
+            val current = LocalDateTime.now()
+            val formatter = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.MEDIUM)
+            val formatted = current.format(formatter)
             val title = binding.title.text.toString()
-            val published = binding.published.text.toString().toInt()
-
-            binding.author.setText("")
+            val published = "Added: $formatted"
+           // binding.author.setText("")
             binding.title.setText("")
-            binding.published.setText("")
+            //binding.published.setText("")
 
-            addBook(title, author, published)
+            addBook(title, published)
 
             val ipm = getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
             ipm.hideSoftInputFromWindow(currentFocus?.windowToken, 0)
@@ -64,9 +69,9 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun addBook(title: String, author: String, published: Int) {
+    private fun addBook(title: String, published: String) {
 
-        val book = Book(title, author, published)
+        val book = Book(title, published)
         BookDepositoryManager.instance.addBook(book)
 
     }

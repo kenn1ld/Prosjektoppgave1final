@@ -6,13 +6,28 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="@drawable/border"
+        android:gravity="center"
+        android:hapticFeedbackEnabled="true"
+        android:paddingBottom="50dp"
+        android:text="@string/huskeliste"
+        android:textSize="30sp"
+        tools:ignore="MissingConstraints">
+
+
+    </TextView>
+
     <ScrollView
         android:id="@+id/scrollView2"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginTop="100dp"
+        android:background="#515151"
         app:layout_constraintBottom_toTopOf="@+id/addBookForm"
-        app:layout_constraintTop_toTopOf="parent"
-        >
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/bookListing"
@@ -31,33 +46,20 @@
         app:layout_constraintTop_toBottomOf="@+id/scrollView2"
         >
 
-
         <EditText
             android:id="@+id/title"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="text"
-            android:hint="Titel"/>
+            android:hint="Navn på liste"/>
 
-        <EditText
-            android:id="@+id/author"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:hint="Forfatter"
-            android:inputType="text" />
 
-        <EditText
-            android:id="@+id/published"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:inputType="number"
-            android:hint="Publisert"/>
-
-        <Button
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/saveBt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Save" />
+            android:clickable="true"
+            app:srcCompat="@android:drawable/ic_input_add" />
 
 
     </LinearLayout>

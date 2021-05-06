@@ -11,7 +11,6 @@ class BookCollectionAdapter(private var books:List<Book>, private val onBookClic
 
     class ViewHolder(val binding:BookLayoutBinding):RecyclerView.ViewHolder(binding.root) {
         fun bind(book: Book, onBookClicked:(Book) -> Unit) {
-            binding.author.text = book.author
             binding.title.text = book.title
             binding.published.text = book.published.toString()
 

@@ -38,9 +38,9 @@ class BookDepositoryManager {
 
 
         bookColection = mutableListOf(
-            Book("Martha Wells", "All systems red", 2017),
-            Book("Neil Gaiman", "American Gods", 2011),
-            Book("Terry Pratchett", "The wee free men", 2003)
+            Book("Martha Wells", "4324"),
+            Book("Neil Gaiman",  "2011"),
+            Book("Terry Pratchett",  "2003")
         )
 
         onBooks?.invoke(bookColection)
