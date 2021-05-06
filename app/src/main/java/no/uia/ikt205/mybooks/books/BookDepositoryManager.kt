@@ -38,9 +38,9 @@ class BookDepositoryManager {
 
 
         bookColection = mutableListOf(
-            Book("Martha Wells", "4324"),
-            Book("Neil Gaiman",  "2011"),
-            Book("Terry Pratchett",  "2003")
+            Book("Martha Wells"),
+            Book("Neil Gaiman"),
+            Book("Terry Pratchett")
         )
 
         onBooks?.invoke(bookColection)
@@ -53,6 +53,11 @@ class BookDepositoryManager {
 
     fun addBook(book: Book) {
         bookColection.add(book)
+        onBooks?.invoke(bookColection)
+    }
+
+    fun removeBook(book: Book) {
+        bookColection.remove(book)
         onBooks?.invoke(bookColection)
     }
 

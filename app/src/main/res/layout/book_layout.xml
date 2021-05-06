@@ -25,17 +25,24 @@
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             tools:text="Bok titel" />
 
-        <TextView
-            android:id="@+id/author"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            tools:text="Forfatter" />
 
-        <TextView
-            android:id="@+id/published"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            tools:text="Publisert" />
+
+        <ProgressBar
+            android:id="@+id/progressBarMain"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <Button
+            android:id="@+id/deleteBt"
+            android:layout_width="50dp"
+            android:layout_height="40dp"
+            android:background="@android:drawable/ic_delete"
+            android:backgroundTint="#FF0000"
+            android:gravity="center"
+            android:text="@string/delete"
+            android:textColor="@color/black"
+            app:cornerRadius="20dp" />
     </LinearLayout>
 
 </androidx.cardview.widget.CardView>

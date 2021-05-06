@@ -10,6 +10,7 @@ import no.uia.ikt205.mybooks.books.data.Book
 import no.uia.ikt205.mybooks.books.BookCollectionAdapter
 import no.uia.ikt205.mybooks.books.BookDepositoryManager
 import no.uia.ikt205.mybooks.books.BookDetailsActivity
+import no.uia.ikt205.mybooks.books.data.Huskeliste
 import no.uia.ikt205.mybooks.databinding.ActivityMainBinding
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
@@ -28,7 +29,6 @@ class BookHolder{
 
 }
 
-
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
@@ -42,6 +42,7 @@ class MainActivity : AppCompatActivity() {
         binding.bookListing.layoutManager = LinearLayoutManager(this)
         binding.bookListing.adapter = BookCollectionAdapter(emptyList<Book>(), this::onBookClicked)
 
+
         BookDepositoryManager.instance.onBooks = {
             (binding.bookListing.adapter as BookCollectionAdapter).updateCollection(it)
         }
@@ -50,7 +51,6 @@ class MainActivity : AppCompatActivity() {
 
 
         binding.saveBt.setOnClickListener {
-
             val author = ""
             val current = LocalDateTime.now()
             val formatter = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.MEDIUM)
@@ -71,10 +71,11 @@ class MainActivity : AppCompatActivity() {
 
     private fun addBook(title: String, published: String) {
 
-        val book = Book(title, published)
+        val book = Book(title)
         BookDepositoryManager.instance.addBook(book)
 
     }
+
 
 
     private fun onBookClicked(book: Book): Unit {
@@ -85,7 +86,7 @@ class MainActivity : AppCompatActivity() {
 
         BookHolder.PickedBook = book
 
-        val intent =Intent(this, BookDetailsActivity::class.java)
+        val intent = Intent(this, BookDetailsActivity::class.java)
 
         startActivity(intent)
         //startActivityForResult(intent, REQUEST_BOOK_DETAILS)

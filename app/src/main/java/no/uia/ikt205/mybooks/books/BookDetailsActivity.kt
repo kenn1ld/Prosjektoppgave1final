@@ -36,7 +36,6 @@ class BookDetailsActivity : AppCompatActivity() {
         }
 
         binding.title.text = book.title
-        binding.year.text = book.published.toString()
 
 
 
