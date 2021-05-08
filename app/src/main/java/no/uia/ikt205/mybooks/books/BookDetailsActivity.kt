@@ -5,9 +5,11 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import androidx.recyclerview.widget.LinearLayoutManager
 import no.uia.ikt205.mybooks.BookHolder
 import no.uia.ikt205.mybooks.EXTRA_BOOK_INFO
 import no.uia.ikt205.mybooks.books.data.Book
+import no.uia.ikt205.mybooks.books.data.Huskeliste
 import no.uia.ikt205.mybooks.databinding.ActivityBookDetailsBinding
 
 class BookDetailsActivity : AppCompatActivity() {
@@ -22,6 +24,16 @@ class BookDetailsActivity : AppCompatActivity() {
 
         //val receivedBook = intent.getParcelableExtra<Book>(EXTRA_BOOK_INFO)
         val receivedBook = BookHolder.PickedBook
+
+        binding.huskelisteRecyclerView.layoutManager = LinearLayoutManager(this)
+        binding.huskelisteRecyclerView.adapter = HuskelisteSublistCollectionAdapter(emptyList<Huskeliste>())
+
+
+        HuskelisteSublistDepositoryManager.instance.onTodos = {
+            (binding.huskelisteRecyclerView.adapter as HuskelisteSublistCollectionAdapter).updateCollection(it)
+        }
+
+        HuskelisteSublistDepositoryManager.instance.load()
 
         if(receivedBook != null){
             book = receivedBook
