@@ -1,17 +1,11 @@
-package no.uia.ikt205.mybooks.books
+package no.uia.ikt205.myhuskeliste.huskelister
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.android.synthetic.main.activity_book_details.view.*
-import kotlinx.android.synthetic.main.activity_book_details.view.title
-import kotlinx.android.synthetic.main.book_layout.view.*
 import kotlinx.android.synthetic.main.elemt_layout.view.*
-import no.uia.ikt205.mybooks.books.data.Book
-import no.uia.ikt205.mybooks.books.data.Huskeliste
-import no.uia.ikt205.mybooks.databinding.ActivityBookDetailsBinding
-import no.uia.ikt205.mybooks.databinding.BookLayoutBinding
-import no.uia.ikt205.mybooks.databinding.ElemtLayoutBinding
+import no.uia.ikt205.myhuskeliste.databinding.ElemtLayoutBinding
+import no.uia.ikt205.myhuskeliste.huskelister.data.Huskeliste
 
 
 class HuskelisteSublistCollectionAdapter(private var huskeliste:List<Huskeliste>):RecyclerView.Adapter<HuskelisteSublistCollectionAdapter.ViewHolder>(){
