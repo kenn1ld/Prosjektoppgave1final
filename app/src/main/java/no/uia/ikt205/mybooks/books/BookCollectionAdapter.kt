@@ -41,7 +41,7 @@ class BookCollectionAdapter(private var books:List<Book>, private val onBookClic
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-       return ViewHolder(BookLayoutBinding.inflate(LayoutInflater.from(parent.context),parent,false))
+       return ViewHolder(BookLayoutBinding.inflate(LayoutInflater.from(parent.context), parent,false))
     }
 
     fun updateCollection(newBooks:List<Book>){

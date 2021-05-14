@@ -5,12 +5,14 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.ProgressBar
 import androidx.recyclerview.widget.LinearLayoutManager
 import no.uia.ikt205.mybooks.BookHolder
 import no.uia.ikt205.mybooks.EXTRA_BOOK_INFO
 import no.uia.ikt205.mybooks.books.data.Book
 import no.uia.ikt205.mybooks.books.data.Huskeliste
 import no.uia.ikt205.mybooks.databinding.ActivityBookDetailsBinding
+import no.uia.ikt205.mybooks.databinding.ElemtLayoutBinding
 
 class BookDetailsActivity : AppCompatActivity() {
 
@@ -19,6 +21,7 @@ class BookDetailsActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        //binding = ActivityBookDetailsBinding.inflate(layoutInflater)
         binding = ActivityBookDetailsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -35,6 +38,9 @@ class BookDetailsActivity : AppCompatActivity() {
 
         HuskelisteSublistDepositoryManager.instance.load()
 
+        binding.progressBarSub.max = HuskelisteSublistDepositoryManager.instance.elementSize()
+        binding.progressBarSub.progress = HuskelisteSublistDepositoryManager.instance.doneElements()
+
         if(receivedBook != null){
             book = receivedBook
             Log.i("Details view", receivedBook.toString())
@@ -48,7 +54,6 @@ class BookDetailsActivity : AppCompatActivity() {
         }
 
         binding.title.text = book.title
-
 
 
 

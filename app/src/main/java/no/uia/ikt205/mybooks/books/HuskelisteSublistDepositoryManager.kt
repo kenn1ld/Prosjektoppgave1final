@@ -3,6 +3,7 @@ package no.uia.ikt205.mybooks.books
 import android.content.Context
 import no.uia.ikt205.mybooks.books.data.Book
 import no.uia.ikt205.mybooks.books.data.Huskeliste
+import java.net.URL
 
 class HuskelisteSublistDepositoryManager {
     private lateinit var todosCollection : MutableList<Huskeliste>
@@ -10,10 +11,10 @@ class HuskelisteSublistDepositoryManager {
     var onTodos: ((List<Huskeliste>) -> Unit)? = null
     var onTodosUpdate: ((huskeliste: Huskeliste) -> Unit)? = null
 
-    fun load(){
+    fun load(url: String = ""){
         todosCollection= mutableListOf(
-                Huskeliste("Egg"),
-                Huskeliste("Melk"),
+                Huskeliste("Egg", true),
+                Huskeliste("Melk", true),
                 Huskeliste("Nøtter"),
                 Huskeliste("Brus"),
         )
@@ -47,6 +48,13 @@ class HuskelisteSublistDepositoryManager {
         onTodos?.invoke(todosCollection)
     }
 
+    fun elementSize():Int{
+        return todosCollection.size
+    }
+
+    fun doneElements():Int{
+        return todosCollection.filter { it -> it.checkBox }.size
+    }
 
     companion object {
         val instance = HuskelisteSublistDepositoryManager()
