@@ -9,8 +9,7 @@
     android:clickable="true"
     android:focusable="true"
     app:contentPadding="24dp"
-    app:cardCornerRadius="4dp"
-    android:backgroundTint="@color/teal_700">
+    app:cardCornerRadius="4dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -26,15 +25,14 @@
             tools:text="Bok titel" />
 
 
-
-        <ProgressBar
-            android:id="@+id/progressBarMain"
-            style="?android:attr/progressBarStyleHorizontal"
+        <CheckBox
+            android:id="@+id/checkBox"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="wrap_content"
+            android:text="CheckBox" />
 
         <Button
-            android:id="@+id/deleteBt"
+            android:id="@+id/deleteButton"
             android:layout_width="50dp"
             android:layout_height="40dp"
             android:background="@android:drawable/ic_delete"
@@ -43,6 +41,7 @@
             android:text="@string/delete"
             android:textColor="@color/black"
             app:cornerRadius="20dp" />
+
     </LinearLayout>
 
 </androidx.cardview.widget.CardView>

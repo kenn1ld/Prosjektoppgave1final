@@ -5,10 +5,14 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.ProgressBar
+import androidx.recyclerview.widget.LinearLayoutManager
 import no.uia.ikt205.mybooks.BookHolder
 import no.uia.ikt205.mybooks.EXTRA_BOOK_INFO
 import no.uia.ikt205.mybooks.books.data.Book
+import no.uia.ikt205.mybooks.books.data.Huskeliste
 import no.uia.ikt205.mybooks.databinding.ActivityBookDetailsBinding
+import no.uia.ikt205.mybooks.databinding.ElemtLayoutBinding
 
 class BookDetailsActivity : AppCompatActivity() {
 
@@ -17,11 +21,25 @@ class BookDetailsActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        //binding = ActivityBookDetailsBinding.inflate(layoutInflater)
         binding = ActivityBookDetailsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         //val receivedBook = intent.getParcelableExtra<Book>(EXTRA_BOOK_INFO)
         val receivedBook = BookHolder.PickedBook
+
+        binding.huskelisteRecyclerView.layoutManager = LinearLayoutManager(this)
+        binding.huskelisteRecyclerView.adapter = HuskelisteSublistCollectionAdapter(emptyList<Huskeliste>())
+
+
+        HuskelisteSublistDepositoryManager.instance.onTodos = {
+            (binding.huskelisteRecyclerView.adapter as HuskelisteSublistCollectionAdapter).updateCollection(it)
+        }
+
+        HuskelisteSublistDepositoryManager.instance.load()
+
+        binding.progressBarSub.max = HuskelisteSublistDepositoryManager.instance.elementSize()
+        binding.progressBarSub.progress = HuskelisteSublistDepositoryManager.instance.doneElements()
 
         if(receivedBook != null){
             book = receivedBook
@@ -36,9 +54,6 @@ class BookDetailsActivity : AppCompatActivity() {
         }
 
         binding.title.text = book.title
-        binding.author.text = book.author
-        binding.year.text = book.published.toString()
-
 
 
 
