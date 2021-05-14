@@ -1,4 +1,4 @@
-package no.uia.ikt205.mybooks.books.data
+package no.uia.ikt205.myhuskeliste.huskelister.data
 
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize

@@ -1,4 +1,4 @@
-package no.uia.ikt205.mybooks
+package no.uia.ikt205.myhuskeliste
 
 import org.junit.Test
 

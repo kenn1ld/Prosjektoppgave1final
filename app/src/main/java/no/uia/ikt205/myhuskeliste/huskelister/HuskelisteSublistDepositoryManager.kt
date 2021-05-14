@@ -1,9 +1,7 @@
-package no.uia.ikt205.mybooks.books
+package no.uia.ikt205.myhuskeliste.huskelister
 
 import android.content.Context
-import no.uia.ikt205.mybooks.books.data.Book
-import no.uia.ikt205.mybooks.books.data.Huskeliste
-import java.net.URL
+import no.uia.ikt205.myhuskeliste.huskelister.data.Huskeliste
 
 class HuskelisteSublistDepositoryManager {
     private lateinit var todosCollection : MutableList<Huskeliste>
